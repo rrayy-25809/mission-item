@@ -1,6 +1,6 @@
 name: mission-item
+main: me.rrayy.msit.msit
 version: 1.0
-main: com.rayy.msit
 author: rrayy
 description: mission item plugin
 api-version: 1.21

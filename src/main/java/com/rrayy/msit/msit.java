@@ -38,8 +38,12 @@ public class msit extends JavaPlugin implements Listener {
             Inventory inventory = playerInventories.computeIfAbsent(p, k -> Bukkit.createInventory(p, InventoryType.CHEST));
 
             // 인벤토리의 첫 번째 슬롯에 아이템을 추가합니다.
-            ItemStack item = new ItemStack(Material.DIAMOND, 1);
-            inventory.setItem(0, item);
+            ItemStack item1 = new ItemStack(Material.DIAMOND, 1);
+            ItemStack item2 = new ItemStack(Material.GOLD_INGOT, 1);
+            ItemStack item3 = new ItemStack(Material.IRON_INGOT, 1);
+            inventory.setItem(0, item1);
+            inventory.setItem(1, item2);
+            inventory.setItem(2, item3);
             p.openInventory(inventory);
         }
     }

@@ -46,10 +46,10 @@ public class msit extends JavaPlugin implements Listener {
     private Window createInventoryWindow(Player player) {
         Gui gui = Gui.normal() // Creates the GuiBuilder for a normal GUI
         .setStructure(
-        "# # # # # # # # #",
-        "# . a . b . c . #",
-        "# . A . B . C . #",
-        "# # # # # # # # #")
+           "# # # # # # # # #",
+                            "# . a . b . c . #",
+                            "# . A . B . C . #",
+                            "# # # # # # # # #")
         .addIngredient('#', new SimpleItem(new ItemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE)))
         .build();
 

@@ -6,10 +6,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 
 public class EventListener implements Listener {
-    private final InventoryManager inventoryManager;
+    private final msit plugin;
 
-    public EventListener(InventoryManager inventoryManager) {
-        this.inventoryManager = inventoryManager;
+    public EventListener(msit plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
@@ -17,7 +17,7 @@ public class EventListener implements Listener {
         Player p = e.getPlayer();
         if (p.isSneaking()) {
             e.setCancelled(true);
-            inventoryManager.openInventory(p);
+            plugin.getInventoryManager().openInventory(p);
         }
     }
 }

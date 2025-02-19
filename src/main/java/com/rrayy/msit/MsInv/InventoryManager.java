@@ -1,10 +1,10 @@
-package com.rrayy.msit;
+package com.rrayy.msit.MsInv;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import xyz.xenondevs.invui.InvUI;
+
+import com.rrayy.msit.msit;
+
 import xyz.xenondevs.invui.gui.Gui;
-import xyz.xenondevs.invui.item.builder.ItemBuilder;
 import xyz.xenondevs.invui.item.impl.SimpleItem;
 import xyz.xenondevs.invui.window.Window;
 
@@ -12,12 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InventoryManager {
-    private final Map<Player, Window> playerWindows = new HashMap<>();
-    public final msit plugin;
+    public final Map<Player, Window> playerWindows = new HashMap<>();
+    @SuppressWarnings("unused")
+    private final msit plugin;
+    private final RandomIt randomIt;
 
     public InventoryManager(msit plugin) {
         this.plugin = plugin;
-        InvUI.getInstance().setPlugin(plugin);
+        this.randomIt = new RandomIt(plugin);
+        plugin.getServer().getPluginManager().registerEvents(new EventListener(this), plugin);
     }
 
     public void openInventory(Player player) {
@@ -26,7 +29,7 @@ public class InventoryManager {
     }
 
     private Window createInventoryWindow(Player player) {
-        SimpleItem item = new SimpleItem(new ItemBuilder(Material.DIAMOND).setDisplayName("§aDiamond"));
+        SimpleItem item = randomIt.getRandomItem();
         Gui gui = Gui.empty(9, 2);
 
         // set items using x and y coordinates
@@ -36,10 +39,10 @@ public class InventoryManager {
         gui.setItem(10, item);
 
         Window window = Window.single()
-                .setViewer(player)
-                .setTitle("InvUI")
-                .setGui(gui)
-                .build();
+        .setViewer(player)
+        .setTitle("당신의 미션 아이템")
+        .setGui(gui)
+        .build();
         
         return window;
     }

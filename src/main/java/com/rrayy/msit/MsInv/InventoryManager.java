@@ -1,10 +1,10 @@
 package com.rrayy.msit.MsInv;
 
 import org.bukkit.entity.Player;
-
 import com.rrayy.msit.msit;
 
 import xyz.xenondevs.invui.gui.Gui;
+import xyz.xenondevs.invui.item.Item;
 import xyz.xenondevs.invui.item.impl.SimpleItem;
 import xyz.xenondevs.invui.window.Window;
 
@@ -43,7 +43,20 @@ public class InventoryManager {
         .setTitle("당신의 미션 아이템")
         .setGui(gui)
         .build();
-        
         return window;
+    }
+
+    public void ClickEvent(Player player, int slot) {
+        Gui gui = (Gui) playerWindows.get(player);
+        Item clickedItem = gui.getItem(slot);
+        if (clickedItem != null) {
+            // Add your logic here for when the inventories match and an item is clicked
+        }
+    }
+
+    public boolean isCorrectSlot(int slot) {
+        int x = slot % 9;
+        int y = slot / 9;
+        return (x == 3 || x == 5 || x == 7) && y == 2;
     }
 }

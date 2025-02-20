@@ -16,11 +16,17 @@ public class EventListener implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
         Inventory Inv = event.getClickedInventory();
-        if(Inv == null) return;
+        if(Inv == null) {
+            event.setCancelled(true);
+            return;
+        }
         Player player = (Player) event.getWhoClicked();
         Inventory playerWindow = (Inventory) inventoryManager.playerWindows.get(player);
-        if (Inv.equals(playerWindow)) {
-            // Add your logic here for when the inventories match
+        int slot = event.getSlot();
+        if (Inv.equals(playerWindow) && inventoryManager.isCorrectSlot(slot)) {
+            inventoryManager.ClickEvent(player, slot);
+        } else {
+            event.setCancelled(true);
         }
     }
 }
